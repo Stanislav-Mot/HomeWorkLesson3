@@ -3,65 +3,107 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
-import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class Options {
+
+    private static WebDriver getDriver() {
+        System.setProperty("webdriver.chrome.driver", "E:\\webdriver\\chromedriver.exe");
+        return new ChromeDriver();
+    }
+
+    private static final WebDriver DRIVER = getDriver();
+    public static final String EMAIL = "stasmotorin199407@gmail.com";
+    public static final String PASSWORD = "qwerty";
+    public static final String COUNTRY = "Canada";
     private static final String PICTURE = new File("src/main/resources/bmw_x6_promo1.jpg").getAbsolutePath();
 
-    public static void testing() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "E:\\webdriver\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+    public static Map<String, String> map = new HashMap<String, String>() {
+        {
+            put("FIRST_NAME", "Stanislav");
+            put("LAST_NAME", "Motoryn");
+            put("ADDRESS1", "Belarus");
+            put("ADDRESS2", "Poland");
+            put("CITY", "Minsk");
+            put("ZIP_CODE", "200200");
+            put("BIRTHDAY", "07.10.1994");
+            put("COLOR", "#FF0000");
+            put("AGE", "26");
+            put("WEBSITE", "https://senlainc.com/");
+            put("PICTURE", PICTURE);
+            put("PHONE", "123456789");
+            put("NOTE", "are you ok?");
+        }
+    };
 
-        // first test (Login)
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    private static void enter(By locator, String text) {
+        DRIVER.findElement(locator).sendKeys(text);
+    }
 
-        driver.get("http://a.testaddressbook.com/sign_in");
-        driver.findElement(By.id("session_email")).sendKeys("stasmotorin199407@gmail.com");
-        driver.findElement(By.id("session_password")).sendKeys("qwerty");
-        driver.findElement(By.cssSelector("input[name='commit']")).click();
+    private static void click(By locator) {
+        DRIVER.findElement(locator).click();
+    }
 
-        //second test (add address)
-        driver.findElement(By.cssSelector("a[href=\"/addresses\"]")).click();
-        driver.findElement(By.cssSelector("a[class= \"row justify-content-center\"]")).click();
-        driver.findElement(By.name("address[first_name]")).sendKeys("Stanislav");
-        driver.findElement(By.name("address[last_name]")).sendKeys("Motorin");
-        driver.findElement(By.id("address_street_address")).sendKeys("Belarus");
-        driver.findElement(By.id("address_secondary_address")).sendKeys("Poland");
-        driver.findElement(By.id("address_city")).sendKeys("Minsk");
-        driver.findElement(By.cssSelector("select[name='address[state]']")).click();
-        driver.findElement(By.cssSelector("option[value='MA']")).click();
-        driver.findElement(By.id("address_zip_code")).sendKeys("200200");
-        driver.findElement(By.id("address_country_us")).click();
-        driver.findElement(By.id("address_birthday")).sendKeys("07.10.1994");
-        driver.findElement(By.id("address_color")).sendKeys("#FF0000");
-        driver.findElement(By.id("address_age")).sendKeys("26");
-        driver.findElement(By.id("address_website")).sendKeys("https://senlainc.com/");
-        driver.findElement(By.id("address_picture")).sendKeys(PICTURE);
-        driver.findElement(By.id("address_phone")).sendKeys("123456789");
-        driver.findElement(By.cssSelector("input[name=\"address[interest_climb]\"][type=\"checkbox\"]")).click();
-        driver.findElement(By.id("address_note")).sendKeys("are you ok?");
-        driver.findElement(By.cssSelector("input[class=\"btn btn-primary\"]")).click();
-        driver.findElement(By.cssSelector("a[data-test=\"list\"][href=\"/addresses\"]")).click();
+    private static void clear(By locator) {
+        DRIVER.findElement(locator).clear();
+    }
 
-        //third test (edit address)
-        driver.findElement(By.cssSelector("a[data-test='edit']")).click();
-        driver.findElement(By.id("address_street_address")).clear();
-        driver.findElement(By.id("address_street_address")).sendKeys("Germany");
-        driver.findElement(By.cssSelector("option[value='CO']")).click();
-        driver.findElement(By.id("address_country_canada")).click();
-        driver.findElement(By.cssSelector("input[class=\"btn btn-primary\"]")).click();
-        driver.findElement(By.cssSelector("a[data-test=\"list\"][href=\"/addresses\"]")).click();
+    public static void Run() {
+        DRIVER.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        DRIVER.manage().window().maximize();
+        DRIVER.get("http://a.testaddressbook.com/sign_in");
+    }
 
-        //fourth test (delete address)
-        driver.findElement(By.cssSelector("a[data-confirm=\"Are you sure?\"]")).click();
-        driver.switchTo().alert().accept();
+    public static void testLogin(String email, String password) {
+        enter(By.id("session_email"), email);
+        enter(By.id("session_password"), password);
+        click(By.cssSelector("input[name='commit']"));
+    }
 
-        //fifth test (sign out)
-        driver.findElement(By.cssSelector("a[data-test=\"sign-out\"]")).click();
+    public static void testAddAddress(Map<String, String> map) {
+        click(By.cssSelector("a[href=\"/addresses\"]"));
+        click(By.cssSelector("a[class= \"row justify-content-center\"]"));
+        enter(By.name("address[first_name]"), map.get("FIRST_NAME"));
+        enter(By.name("address[last_name]"), map.get("LAST_NAME"));
+        enter(By.id("address_street_address"), map.get("ADDRESS1"));
+        enter(By.id("address_secondary_address"), map.get("ADDRESS2"));
+        enter(By.id("address_city"), map.get("CITY"));
+        click(By.cssSelector("select[name='address[state]']"));
+        click(By.cssSelector(String.format("option[value='%s']", State.ALABAMA.getName())));
+        enter(By.id("address_zip_code"), map.get("ZIP_CODE"));
+        click(By.id("address_country_us"));
+        enter(By.id("address_birthday"), map.get("BIRTHDAY"));
+        enter(By.id("address_color"), map.get("COLOR"));
+        enter(By.id("address_age"), map.get("AGE"));
+        enter(By.id("address_website"), map.get("WEBSITE"));
+        enter(By.id("address_picture"), map.get("PICTURE"));
+        enter(By.id("address_phone"), map.get("PHONE"));
+        click(By.cssSelector("input[name=\"address[interest_climb]\"][type=\"checkbox\"]"));
+        enter(By.id("address_note"), map.get("NOTE"));
+        click(By.cssSelector("input[class=\"btn btn-primary\"]"));
+        click(By.cssSelector("a[data-test=\"list\"][href=\"/addresses\"]"));
+    }
 
-        Thread.sleep(5000);
+    public static void testEditAddress(String country) {
+        click(By.cssSelector("a[data-test='edit']"));
+        clear(By.id("address_street_address"));
+        enter(By.id("address_street_address"), country);
+        click(By.cssSelector("input[class=\"btn btn-primary\"]"));
+        click(By.cssSelector("a[data-test=\"list\"][href=\"/addresses\"]"));
+    }
 
-        driver.quit();
+    public static void testDeleteAddress() {
+        click(By.cssSelector("a[data-confirm=\"Are you sure?\"]"));
+        DRIVER.switchTo().alert().accept();
+    }
+
+    public static void testLogout() {
+        click(By.cssSelector("a[data-test=\"sign-out\"]"));
+    }
+
+    public static void quit() {
+        DRIVER.quit();
     }
 }
