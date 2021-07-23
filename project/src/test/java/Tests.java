@@ -1,5 +1,3 @@
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,9 +9,9 @@ public class Tests {
 
     private final WebDriver DRIVER = Driver.getDriver();
 
-    @Before
+    @BeforeAll
     public void setUp() {
-        DRIVER.get("http://a.testaddressbook.com/sign_in");
+        DRIVER.navigate().to("http://a.testaddressbook.com/sign_in");
     }
 
     @Test
@@ -68,6 +66,7 @@ public class Tests {
     }
 
     @Test
+    @Disabled
     @DisplayName("Проверка выхода из пользователя")
     public void testLogout() {
         Methods.click(By.cssSelector("a[data-test=\"sign-out\"]"));
