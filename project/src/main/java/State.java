@@ -1,12 +1,7 @@
 public enum State {
     ALABAMA("AL"),
     ALASKA("AK"),
-    ARIZONA("AZ"),
-    ARKANSAS("AR"),
-    CALIFORNIA("CA"),
-    COLORADO("CO"),
-    CONNECTICUT("CT"),
-    MASSACHUSETTS("MA");
+    ARIZONA("AZ");
 
     private String name;
 

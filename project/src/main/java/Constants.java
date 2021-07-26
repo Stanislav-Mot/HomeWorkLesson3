@@ -4,6 +4,7 @@ import java.util.Map;
 
 public class Constants {
 
+    public static final String URL = "http://a.testaddressbook.com/sign_in";
     public static final String EMAIL = "stasmotorin199407@gmail.com";
     public static final String PASSWORD = "qwerty";
     public static final String COUNTRY = "Canada";
