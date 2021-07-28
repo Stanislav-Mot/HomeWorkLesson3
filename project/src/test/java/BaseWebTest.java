@@ -5,14 +5,14 @@ import org.openqa.selenium.WebDriver;
 
 public class BaseWebTest {
 
-    protected final WebDriver DRIVER = Driver.getDriver();
+    protected WebDriver DRIVER = Driver.getDriver();
 
     @BeforeAll
     public void setUp() {
         DRIVER.get(Constants.URL);
 
         String currentURL = DRIVER.getCurrentUrl();
-        Assertions.assertEquals("http://a.testaddressbook.com/sign_in", currentURL,
+        Assertions.assertEquals(Constants.URL, currentURL,
                 "The page didn't open or the wrong page");
 
     }
