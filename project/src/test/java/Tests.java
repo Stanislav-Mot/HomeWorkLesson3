@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-import static Locators.PageWithLocators.*;
+import static locators.PageWithLocators.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -16,7 +16,7 @@ public class Tests extends BaseWebTest {
     @Test
     @Order(1)
     @DisplayName("Testing for authorization of user")
-    public void testLogin() {
+    public void loginTest() {
 
         Log.info("Entered EMAIL");
         methods.enter(LOGIN_LOCATOR, Constants.EMAIL);
@@ -37,7 +37,7 @@ public class Tests extends BaseWebTest {
     @EnumSource(State.class)
     @Order(2)
     @DisplayName("Testing for adding an address")
-    public void testAddAddress(State state) {
+    public void addAddressTest(State state) {
 
         Log.info("The addresses button is clicked");
         methods.click(BUTTON_ADDRESSES);
@@ -110,7 +110,7 @@ public class Tests extends BaseWebTest {
     @Test
     @Order(3)
     @DisplayName("Testing field changes")
-    public void testEditAddress() {
+    public void editAddressTest() {
 
         Log.info("The edit button is clicked");
         methods.click(BUTTON_EDIT);
@@ -133,7 +133,7 @@ public class Tests extends BaseWebTest {
     @Test
     @Order(4)
     @DisplayName("Testing for address deletion")
-    public void testDeleteAddress() {
+    public void deleteAddressTest() {
 
         Log.info("The list button is clicked");
         methods.click(BUTTON_LIST);
@@ -160,7 +160,7 @@ public class Tests extends BaseWebTest {
     @Test
     @Disabled
     @DisplayName("Testing for log out of user")
-    public void testLogout() {
+    public void logoutTest() {
 
         Log.info("The sign_out button is clicked");
         methods.click(BUTTON_SIGN_OUT);
