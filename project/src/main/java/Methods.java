@@ -2,7 +2,7 @@ import org.openqa.selenium.By;
 
 public class Methods {
 
-    public static void enter(By locator, String text) {
+    public void enter(By locator, String text) {
         Driver.driver.findElement(locator).sendKeys(text);
     }
 
@@ -18,15 +18,15 @@ public class Methods {
         Driver.driver.findElement(locator).clear();
     }
 
-    public void accept(){
+    public void accept() {
         Driver.driver.switchTo().alert().accept();
     }
 
-    public boolean isDisplayed(By selector){
+    public boolean isDisplayed(By selector) {
         return Driver.driver.findElement(selector).isDisplayed();
     }
 
-    public String getText(By selector){
+    public String getText(By selector) {
         return Driver.driver.findElement(selector).getText();
     }
 

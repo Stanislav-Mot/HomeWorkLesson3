@@ -5,16 +5,14 @@ import org.openqa.selenium.WebDriver;
 
 public class BaseWebTest {
 
-    protected WebDriver DRIVER = Driver.getDriver();
+    protected WebDriver driver = Driver.getDriver();
 
     @BeforeAll
     public void setUp() {
 
-        Log.info("Open the login and password page");
-        DRIVER.get(Constants.URL);
+        driver.get(Constants.URL);
 
-        Log.info("Checking that the correct page has opened");
-        String currentURL = DRIVER.getCurrentUrl();
+        String currentURL = driver.getCurrentUrl();
         Assertions.assertEquals(Constants.URL, currentURL,
                 "The page didn't open or the wrong page");
 
@@ -23,7 +21,6 @@ public class BaseWebTest {
     @AfterAll
     public void tearDown() {
 
-        Log.info("Exiting the driver");
-        DRIVER.quit();
+        driver.quit();
     }
 }
