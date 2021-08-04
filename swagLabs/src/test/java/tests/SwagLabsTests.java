@@ -10,8 +10,8 @@ import pages.InventoryPage;
 import pages.LoginPage;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static eu.senla.Products.*;
-import static eu.senla.TestData.*;
+import static utils.Products.*;
+import static utils.TestData.*;
 
 public class SwagLabsTests extends BaseWebTest {
 

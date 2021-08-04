@@ -1,6 +1,6 @@
 package pages;
 
-import eu.senla.Products;
+import utils.Products;
 
 import static com.codeborne.selenide.Selenide.$x;
 

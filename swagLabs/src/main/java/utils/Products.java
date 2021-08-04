@@ -1,4 +1,4 @@
-package eu.senla;
+package utils;
 
 public enum Products {
     SAUCE_LABS_BACKPACK("sauce-labs-backpack"),
