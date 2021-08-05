@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class CheckoutStepTwoPage {
+public class CheckoutStepTwoPage extends AbstractPage{
     private SelenideElement finishButton = $x("//button[@data-test = 'finish']");
     private SelenideElement cancelButton = $x("//button[@data-test = 'cancel']");
     private SelenideElement totalSum = $x("//div[@class = 'summary_subtotal_label']");

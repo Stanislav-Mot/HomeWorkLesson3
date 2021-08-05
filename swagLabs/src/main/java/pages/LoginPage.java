@@ -6,7 +6,7 @@ import utils.TestData;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
-public class LoginPage extends AbstractPage {
+public class LoginPage {
 
     private static final String URL = "https://www.saucedemo.com";
 

@@ -6,7 +6,7 @@ import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class CheckoutStepOnePage {
+public class CheckoutStepOnePage extends AbstractPage{
 
     private SelenideElement firstName = $x("//input[@data-test = 'firstName']");
     private SelenideElement lastName = $x("//input[@data-test = 'lastName']");
