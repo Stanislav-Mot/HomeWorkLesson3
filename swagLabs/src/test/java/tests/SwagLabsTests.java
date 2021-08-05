@@ -30,7 +30,7 @@ public class SwagLabsTests extends BaseWebTest {
     @ParameterizedTest
     @MethodSource("loginValue")
     public void loginTest(String value) {
-        loginPage.enteredUserData(value);
+        loginPage.loginToAccount(value);
 
         Assertions.assertEquals(InventoryPage.URL,
                 getWebDriver().getCurrentUrl(),"Wrong address");
@@ -39,7 +39,7 @@ public class SwagLabsTests extends BaseWebTest {
     @ParameterizedTest
     @MethodSource("loginValue")
     public void buyTest(String value) {
-        loginPage.enteredUserData(value);
+        loginPage.loginToAccount(value);
         String actual = inventoryPage.clickAddingButton(SAUCE_LABS_BACKPACK)
                 .clickAddingButton(SAUCE_LABS_BIKE_LIGHT)
                 .clickAddingButton(SAUCE_LABS_BOLT_T_SHIRT)
@@ -59,7 +59,7 @@ public class SwagLabsTests extends BaseWebTest {
     @ParameterizedTest
     @MethodSource("loginValue")
     public void cancelBuyTest(String value) {
-        loginPage.enteredUserData(value);
+        loginPage.loginToAccount(value);
         inventoryPage.clickAddingButton(SAUCE_LABS_BACKPACK)
                 .clickAddingButton(SAUCE_LABS_BIKE_LIGHT)
                 .clickAddingButton(SAUCE_LABS_BOLT_T_SHIRT)
@@ -79,7 +79,7 @@ public class SwagLabsTests extends BaseWebTest {
     @ParameterizedTest
     @MethodSource("loginValue")
     public void removingProductsTest(String value) {
-        loginPage.enteredUserData(value);
+        loginPage.loginToAccount(value);
         inventoryPage.clickAddingButton(SAUCE_LABS_BACKPACK)
                 .clickAddingButton(SAUCE_LABS_BIKE_LIGHT)
                 .clickAddingButton(SAUCE_LABS_BOLT_T_SHIRT)
@@ -96,7 +96,7 @@ public class SwagLabsTests extends BaseWebTest {
     @ParameterizedTest
     @MethodSource("loginValue")
     public void sumProductsTest(String value) {
-        loginPage.enteredUserData(value);
+        loginPage.loginToAccount(value);
         CheckoutStepTwoPage checkoutStepTwoPage = new CheckoutStepTwoPage();
         inventoryPage.clickAddingButton(SAUCE_LABS_BACKPACK)
                 .clickAddingButton(SAUCE_LABS_BIKE_LIGHT)

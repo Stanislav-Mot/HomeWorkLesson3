@@ -32,7 +32,7 @@ public class LoginPage extends AbstractPage {
         open(URL);
     }
 
-    public InventoryPage enteredUserData(String login){
+    public InventoryPage loginToAccount(String login){
         enterLogin(login).enterPassword(TestData.password).clickLoginButton();
         return new InventoryPage();
     }
